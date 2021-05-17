@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+
+
 import org.generation.blogPessoal.model.Postagem;
 import org.generation.blogPessoal.repository.PostagemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,15 +44,15 @@ public class PostagemController {
 	
 	@GetMapping("/titulo/{titulo}")
 	public ResponseEntity<List<Postagem>> GetByTitulo(@PathVariable String titulo){
-		return ResponseEntity.ok(repository.findAllByTituloContainingIgnoreCase(titulo));
+		return ResponseEntity.ok(repository.findALLByTituloContainingIgnoreCase(titulo));
 	}
 	
-	@PostMapping
+	@PostMapping // posta, inseri 
 	public ResponseEntity<Postagem> post (@Valid @RequestBody Postagem postagem){
 		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(postagem));
 	}
 	
-	@PutMapping
+	@PutMapping // atualizar 
 	public ResponseEntity<Postagem> put (@RequestBody Postagem postagem){
 		return ResponseEntity.status(HttpStatus.OK).body(repository.save(postagem));
 	}
